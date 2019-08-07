@@ -26,9 +26,19 @@ function RoomProvider({ children }) {
       return { ...room, images, id };
     });
   }
+
+  function getRoom(slug) {
+    return rooms.find(room => room.slug === slug);
+  }
   return (
     <RoomContext.Provider
-      value={{ rooms, sortedRooms, featuredRooms, loading }}
+      value={{
+        rooms,
+        sortedRooms,
+        featuredRooms,
+        loading,
+        getRoom
+      }}
     >
       {children}
     </RoomContext.Provider>
