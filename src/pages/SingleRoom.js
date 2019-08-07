@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Hero from "../components/Hero";
 import Banner from "../components/Banner";
 import { RoomContext } from "../RoomContext";
+import StyledHero from "../components/StyledHero";
 
 export default function SingleRoom(props) {
   const { getRoom } = useContext(RoomContext);
@@ -29,19 +29,19 @@ export default function SingleRoom(props) {
     pets,
     images
   } = room;
-
+  const [mainImg, ...defaultImages] = images;
   return (
     <>
-      <Hero>
+      <StyledHero image={mainImg}>
         <Banner title={`${room.name} room`}>
           <Link to="/" className="btn-primary">
             back to rooms
           </Link>
         </Banner>
-      </Hero>
+      </StyledHero>
       <section className="single-room">
         <div className="single-room-images">
-          {images.map((image, index) => (
+          {defaultImages.map((image, index) => (
             <img key={index} src={image} alt={name} />
           ))}
         </div>
